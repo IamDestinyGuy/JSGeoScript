@@ -1,30 +1,32 @@
 async function logVisitorData() {
-    const endpoint = "https://script.google.com/macros/s/AKfycbwMMGdQp0aCxXX1VL5sGCHKImZEGrDiyXSnO_FaJES5PNWMANJ1RmoVQhu-tDt4lQ8_/exec"; //My script url to send logged data, gotta extend it later
-    //IDENT: AKfycbwMMGdQp0aCxXX1VL5sGCHKImZEGrDiyXSnO_FaJES5PNWMANJ1RmoVQhu-tDt4lQ8_
-    const data = {
-        latitude: null,
-        longitude: null,
-        userAgent: navigator.userAgent,
-        language: navigator.language,
-    };
-
+    const endpoint = "https://script.google.com/macros/s/AKfycbwFyi8ewnAxnBPcs3R9hHq3-VjygT0M6ZzWwdN8O3q_Ga_aaEfFZ0g6k5acmsylBRdS/exec"; //My script url to send logged data, gotta extend it later
+   
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
-                data.latitude = position.coords.latitude;
-                data.longitude = position.coords.longitude;
+            position => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+
+                const payload = {
+                    latitude: latitude,
+                    longitude: longitude,
+                    userAgent: navigator.userAgent,
+                    timestamp: new Date().toISOString()
+                };
 
                 fetch(endpoint, {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data),
-                })
-                    .then((response) => response.text())
-                    .then((result) => console.log("Success:", result))
-                    .catch((error) => console.error("Error:", error));
+                    body: JSON.stringify(payload),
+                    headers: { "Content-Type": "application/json" }
+                }).then(() => alert("Data sent successfully!"))
+                  .catch(err => console.error("Error sending data:", err));
             },
-            (error) => console.error("Geolocation error:", error)
+            error => {
+                alert("Error getting location: " + error.message);
+            }
         );
+    } else {
+        alert("Geolocation is not supported by this browser.");
     }
 }
 
