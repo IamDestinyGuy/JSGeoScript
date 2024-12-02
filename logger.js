@@ -17,7 +17,7 @@ async function logVisitorData() {
                 fetch(endpoint, {
                     method: "POST",
                     body: JSON.stringify(payload),
-                    headers: { "Content-Type": "application/json" }
+                    headers: { "Content-Type": "application/json", "Access-Control-Allow-Origin": "*" }
                 }).then(() => alert("Data sent successfully!"))
                   .catch(err => console.error("Error sending data:", err));
             },
