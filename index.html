@@ -1,15 +1,46 @@
-
 <!DOCTYPE html>
-<html lang="pl-PL">
+<html lang="en">
 <head>
-<script src="logger.js" defer></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+        }
+    </style>
 </head>
-	<div>
-		HELLO WORLD
-	</div>
+<body>
+    <h1>Geolocation Test</h1>
+    <button id="getLocationButton">Get My Location</button>
+    <div id="output">Click the button to see your location.</div>
 
+    <script>
+        document.getElementById("getLocationButton").addEventListener("click", () => {
+            const outputDiv = document.getElementById("output");
+            
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    position => {
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+                        outputDiv.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
+                    },
+                    error => {
+                        outputDiv.textContent = `Error: ${error.message}`;
+                    }
+                );
+            } else {
+                outputDiv.textContent = "Geolocation is not supported by your browser.";
+            }
+        });
+    </script>
 </body>
 </html>
-
-
-<!-- Page supported by LiteSpeed Cache 6.5.2 on 2024-11-29 01:18:47 -->
