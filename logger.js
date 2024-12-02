@@ -1,5 +1,5 @@
 async function logVisitorData() {
-    const endpoint = "https://script.google.com/macros/s/AKfycbzBWItsiEbOn-B1-5bIL_24NICYnHg3pHsio3jn2tpMLV6FObh5VwSd7uhCgVD6lOXO/exec"; //My script url to send logged data, gotta extend it later
+    const endpoint = "https://script.google.com/macros/s/AKfycbwMMGdQp0aCxXX1VL5sGCHKImZEGrDiyXSnO_FaJES5PNWMANJ1RmoVQhu-tDt4lQ8_/exec"; //My script url to send logged data, gotta extend it later
     //IDENT: AKfycbzBWItsiEbOn-B1-5bIL_24NICYnHg3pHsio3jn2tpMLV6FObh5VwSd7uhCgVD6lOXO
     const data = {
         latitude: null,
