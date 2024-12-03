@@ -8,10 +8,10 @@ async function logVisitorData() {
                 const longitude = position.coords.longitude;
 
                 const payload = {
+                    timestamp: new Date().toISOString(),
                     latitude: latitude,
                     longitude: longitude,
-                    userAgent: navigator.userAgent,
-                    timestamp: new Date().toISOString()
+                    userAgent: navigator.userAgent
                 };
 
                 fetch(endpoint, {
