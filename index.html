@@ -50,6 +50,7 @@
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
+            timestamp: new Date().toISOString(),
             latitude: 12.345,
             longitude: 67.890,
             userAgent: "Test User-Agent"
