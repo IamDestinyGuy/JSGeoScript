@@ -43,5 +43,22 @@
         });
     </script>
 	<script src="logger.js" defer></script>
+    <script>
+        fetch("https://script.google.com/macros/s/AKfycbzIfulkJQ-O1Fs_VK5xMOtYIALvRkCsGgXv9EzdK5Xnr3uk90Fy-j1q41kaUUkyC8nz/exec", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            latitude: 12.345,
+            longitude: 67.890,
+            userAgent: "Test User-Agent"
+        })
+    })
+    .then(response => response.text())
+    .then(data => console.log("Success:", data))
+    .catch(error => console.error("Error:", error));
+
+    </script>
 </body>
 </html>
