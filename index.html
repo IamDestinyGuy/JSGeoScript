@@ -3,63 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geolocation Test</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-        #output {
-            margin-top: 20px;
-            font-size: 18px;
-            color: green;
-        }
-    </style>
-</head>
-<body>
-    <h1>Geolocation Test</h1>
-    <button id="getLocationButton">Get My Location</button>
-    <div id="output">Click the button to see your location.</div>
-
+    <title>Visitor Data Collection</title>
     <script>
-        document.getElementById("getLocationButton").addEventListener("click", () => {
-            const outputDiv = document.getElementById("output");
-            
+        function sendData(location) {
+            const scriptURL = 'YOUR_GOOGLE_SCRIPT_URL';
+            const data = {
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                timestamp: new Date().toISOString()
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    alert("Data sent successfully!");
+                } else {
+                    alert("Error sending data.");
+                }
+            });
+        }
+
+        function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(
-                    position => {
-                        const latitude = position.coords.latitude;
-                        const longitude = position.coords.longitude;
-                        outputDiv.textContent = `Latitude: ${latitude}, Longitude: ${longitude}`;
-                    },
-                    error => {
-                        outputDiv.textContent = `Error: ${error.message}`;
-                    }
-                );
+                navigator.geolocation.getCurrentPosition(sendData, showError);
             } else {
-                outputDiv.textContent = "Geolocation is not supported by your browser.";
+                alert("Geolocation is not supported by this browser.");
             }
-        });
-    </script>
-	<script src="logger.js" defer></script>
-    <script>
-        fetch("https://script.google.com/macros/s/AKfycbwKzj4_hf1A9no5W0BPLxF-nAzxI9A6OC38Gw-pIFmkF9S-y4HiSePK2bGdQ02BeNzK/exec", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            timestamp: new Date().toISOString(),
-            latitude: 12.345,
-            longitude: 67.890,
-            userAgent: "Test User-Agent"
-        })
-    })
-    .then(response => response.text())
-    .then(data => console.log("Success:", data))
-    .catch(error => console.error("Error:", error));
+        }
 
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
     </script>
+</head>
+<body onload="getLocation()">
+    <h1>Welcome to Our Page</h1>
+    <p>We are collecting your location data...</p>
 </body>
 </html>
