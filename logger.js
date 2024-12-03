@@ -1,5 +1,5 @@
 async function logVisitorData() {
-    const endpoint = "https://script.google.com/macros/s/AKfycbwFyi8ewnAxnBPcs3R9hHq3-VjygT0M6ZzWwdN8O3q_Ga_aaEfFZ0g6k5acmsylBRdS/exec"; //My script url to send logged data, gotta extend it later
+    const endpoint = "https://script.google.com/macros/s/AKfycbzIfulkJQ-O1Fs_VK5xMOtYIALvRkCsGgXv9EzdK5Xnr3uk90Fy-j1q41kaUUkyC8nz/exec"; //My script url to send logged data, gotta extend it later
    
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
