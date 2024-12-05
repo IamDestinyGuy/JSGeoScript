@@ -18,14 +18,16 @@
                 body: JSON.stringify(data),
                 headers: {
                     'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    alert("Data sent successfully!");
-                } else {
-                    alert("Error sending data.");
-                }
-            });
+                },
+                mode: "no-cors"
+            })
+            //     .then(response => {
+            //     if (response.ok) {
+            //         alert("Data sent successfully!");
+            //     } else {
+            //         alert("Error sending data.");
+            //     }
+            // });
         }
 
         function getLocation() {
