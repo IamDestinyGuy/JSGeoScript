@@ -1,32 +1,37 @@
-async function logVisitorData() {
-    const endpoint = "https://script.google.com/macros/s/AKfycbzBWItsiEbOn-B1-5bIL_24NICYnHg3pHsio3jn2tpMLV6FObh5VwSd7uhCgVD6lOXO/exec"; //My script url to send logged data, gotta extend it later
-    //IDENT: AKfycbzBWItsiEbOn-B1-5bIL_24NICYnHg3pHsio3jn2tpMLV6FObh5VwSd7uhCgVD6lOXO
-    const data = {
-        latitude: null,
-        longitude: null,
-        userAgent: navigator.userAgent,
-        language: navigator.language,
-    };
+async function sendData(location) {
+            const scriptURL = 'https://script.google.com/macros/s/AKfycbz4esELp7uGskSsnNeIfaIHDi4OmdTNwZQxOayYeHE08tFBx0XgqirKy_9njMoSu8RY/exec';
+            const data = {
+                latitude: location.coords.latitude,
+                longitude: location.coords.longitude,
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent,
+            };
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            (position) => {
-                data.latitude = position.coords.latitude;
-                data.longitude = position.coords.longitude;
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                mode: "no-cors"
+            })
+            //     .then(response => {
+            //     if (response.ok) {
+            //         alert("Data sent successfully!");
+            //     } else {
+            //         alert("Error sending data.");
+            //     }
+            // });
+        }
 
-                fetch(endpoint, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify(data),
-                })
-                    .then((response) => response.text())
-                    .then((result) => console.log("Success:", result))
-                    .catch((error) => console.error("Error:", error));
-            },
-            (error) => console.error("Geolocation error:", error)
-        );
-    }
-}
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(sendData, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
 
 // Trigger the function
-logVisitorData();
+sendData();
