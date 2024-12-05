@@ -1,4 +1,4 @@
-async function sendData(location) {
+function sendData(location) {
             const scriptURL = 'https://script.google.com/macros/s/AKfycbz4esELp7uGskSsnNeIfaIHDi4OmdTNwZQxOayYeHE08tFBx0XgqirKy_9njMoSu8RY/exec';
             const data = {
                 latitude: location.coords.latitude,
