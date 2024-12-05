@@ -10,7 +10,8 @@
             const data = {
                 latitude: location.coords.latitude,
                 longitude: location.coords.longitude,
-                timestamp: new Date().toISOString()
+                timestamp: new Date().toISOString(),
+                userAgent: navigator.userAgent
             };
 
             fetch(scriptURL, {
