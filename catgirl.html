@@ -40,14 +40,6 @@
 			mode: "no-cors"
 		})
 
-		function getLocation() {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(sendData, showError);
-			} else {
-				alert("Geolocation is not supported by this browser.");
-			}
-		}
-
 		//     .then(response => {
 		//     if (response.ok) {
 		//         alert("Data sent successfully!");
@@ -57,21 +49,29 @@
 		// });
 	}
 
+	function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(sendData, showError);
+			} else {
+				alert("Geolocation is not supported by this browser.");
+			}
+		}
+
 	function showError(error) {
-	    switch (error.code) {
-	        case error.PERMISSION_DENIED:
-	            alert("User denied the request for Geolocation.");
-	            break;
-	        case error.POSITION_UNAVAILABLE:
-	            alert("Location information is unavailable.");
-	            break;
-	        case error.TIMEOUT:
-	            alert("The request to get user location timed out.");
-	            break;
-	        case error.UNKNOWN_ERROR:
-	            alert("An unknown error occurred.");
-	            break;
-	    }
+		switch (error.code) {
+			case error.PERMISSION_DENIED:
+				alert("User denied the request for Geolocation.");
+				break;
+			case error.POSITION_UNAVAILABLE:
+				alert("Location information is unavailable.");
+				break;
+			case error.TIMEOUT:
+				alert("The request to get user location timed out.");
+				break;
+			case error.UNKNOWN_ERROR:
+				alert("An unknown error occurred.");
+				break;
+		}
 	}
 </script>
 <script src="https://js.dhresource.com/buyerassets/_next/static/chunks/1e6088b3-8cf5bcc4fc59243a.js" async="">

