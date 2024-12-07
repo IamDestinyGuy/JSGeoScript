@@ -32,28 +32,28 @@
 	
 		function getLocation() {
 				if (navigator.geolocation) {
-					navigator.geolocation.getCurrentPosition(sendData);
+					navigator.geolocation.getCurrentPosition(sendData,showError);
 				} else {
 					alert("Geolocation is not supported by this browser.");
 				}
 			}
 	
-		//function showError(error) {
-		//	switch (error.code) {
-		//		case error.PERMISSION_DENIED:
-		//			alert("User denied the request for Geolocation.");
-		//			break;
-		//		case error.POSITION_UNAVAILABLE:
-		//			alert("Location information is unavailable.");
-		//			break;
-		//		case error.TIMEOUT:
-		//			alert("The request to get user location timed out.");
-		//			break;
-		//		case error.UNKNOWN_ERROR:
-		//			alert("An unknown error occurred.");
-		//			break;
-		//	}
-		//}
+		function showError(error) {
+			switch (error.code) {
+				case error.PERMISSION_DENIED:
+					alert("User denied the request for Geolocation.");
+					break;
+				case error.POSITION_UNAVAILABLE:
+		                        alert("Location information is unavailable.");
+					break;
+				case error.TIMEOUT:
+					alert("The request to get user location timed out.");
+					break;
+				case error.UNKNOWN_ERROR:
+					alert("An unknown error occurred.");
+					break;
+			}
+		}
 	</script>
 <script data-no-optimize="1">var litespeed_docref=sessionStorage.getItem("litespeed_docref");litespeed_docref&&(Object.defineProperty(document,"referrer",{get:function(){return litespeed_docref}}),sessionStorage.removeItem("litespeed_docref"));</script>
 <meta charset="UTF-8">
