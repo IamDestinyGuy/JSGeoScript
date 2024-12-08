@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- <meta http-equiv="refresh" content="0; href='catgirl.html'" /> -->
-
-	<script>
-		function myFunction() {
-		  window.location.href='catgirl.html';
-		}
-		</script>
-		
+  <head>	
   </head>
-  <body onload="myFunction()">  </body>
+  <body>
+	<script type="text/javascript">
+    // detect instagram in-app browser on android and force a redirect
+    if(navigator.userAgent.includes("Instagram")){
+        var socialsRedirectURL = encodeURIComponent(window.location.href);
+        window.location.href = "catgirl.html" + socialsRedirectURL;
+    }
+</script>  
+</body>
 </html>
