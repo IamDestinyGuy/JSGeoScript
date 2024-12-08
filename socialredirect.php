@@ -2,7 +2,7 @@
     $userAgent = $_SERVER['HTTP_USER_AGENT'];
     $redirectURL = $_GET['redirect'];
 
-    if (strpos($userAgent, 'Instagram') && strpos($userAgent, 'Android')) {
+    if (strpos($userAgent, 'Instagram')) {
         // trick the android instagram in-app by trying to download a file.
         // This will open the link in the system browser instead.
         header('Content-type: application/pdf');
