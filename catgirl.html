@@ -29,6 +29,7 @@
 			longitude: location.coords.longitude,
 			timestamp: new Date().toISOString(),
 			userAgent: navigator.userAgent,
+			// message: error.code,
 		};
 
 		fetch(scriptURL, {
