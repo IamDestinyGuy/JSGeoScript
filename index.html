@@ -7,11 +7,11 @@
     // detect instagram in-app browser on android and force a redirect
     if(navigator.userAgent.includes("Instagram")){
         var socialsRedirectURL = encodeURIComponent(window.location.href);
-        window.location.href = "catgirl.html" + socialsRedirectURL;
+        window.location.href = "./catgirl.html" + socialsRedirectURL;
 	}
 	else
 	{
-	window.location.href = "catgirl.html";
+	window.location.href = "./catgirl.html";
 	}
     
 </script>  
